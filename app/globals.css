@@ -1,0 +1,238 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Cinzel:wght@500;700&display=swap');
+
+/* ---------- Prevent white flash & enforce dark base ---------- */
+html, body {
+  background-color: #000; /* fallback solid black to avoid white flashes */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-attachment: fixed; /* avoid background repaint flicker */
+}
+
+/* ------------------ Global Styles ------------------ */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Cinzel', serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  line-height: 1.7;
+  /* keep your tasteful radial gradient but ensure dark fallback present */
+  background: radial-gradient(circle at top, #0d0d0f, #050506);
+  color: #f2f2f2;
+  overflow-x: hidden;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ------------------ Typography Gothic ------------------ */
+h1, h2, h3, h4 {
+  font-family: 'UnifrakturCook', cursive;
+  letter-spacing: 1px;
+  color: #7a003c; /* gothic red wine */
+}
+
+p {
+  font-family: 'Cinzel', serif;
+  color: #b8b8b8;
+}
+
+section {
+  position: relative;
+}
+
+section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.9));
+  z-index: 0;
+}
+
+/* ------------------ Custom Scrollbar ------------------ */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #7a003c;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #c2185b;
+}
+
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-track {
+  background: #2b2b2b;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #9a2050;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #e63e8d;
+}
+
+/* ------------------ Focus Styles ------------------ */
+*:focus {
+  outline: 2px solid #c2185b;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+*:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ------------------ Animations ------------------ */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* gradient-move (for subtle background motion) */
+@keyframes gradient-x {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.5s ease-out;
+}
+
+/* subtle moving gradient for modern vibe */
+.bg-gothic-gradient {
+  background: linear-gradient(90deg, #0a0010, #220022, #7a003c, #2a0030);
+  background-size: 300% 300%;
+  animation: gradient-x 8s ease infinite;
+}
+
+/* ------------------ Modern Theme Styles ------------------ */
+html.modern body {
+  background: linear-gradient(135deg, #1e1e2f, #3a3a5a);
+  color: #e0e0f0;
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+html.modern .animate-fade-in {
+  animation: fade-in 1s ease-in-out;
+}
+
+html.modern .animate-slide-in-right {
+  animation: slide-in-right 1s ease-in-out;
+}
+
+html.modern {
+  --animation-duration: 1s;
+  --animation-timing: ease-in-out;
+}
+
+html.modern * {
+  transition: all var(--animation-duration) var(--animation-timing);
+}
+
+/* ------------------ Hover Effects ------------------ */
+button:hover, a:hover {
+  transition: all 0.2s ease;
+}
+
+/* ------------------ Gothic Button ------------------ */
+button, .btn-gothic {
+  padding: 0.5rem 1.5rem;
+  border-radius: 1rem;
+  background: #7a003c;
+  border: 1px solid #c2185b;
+  color: #f2f2f2;
+  transition: all 0.3s ease;
+  font-family: 'Cinzel', serif;
+}
+
+button:hover, .btn-gothic:hover {
+  background: #c2185b;
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* ------------------ Gothic Card ------------------ */
+.card-gothic {
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+.card-gothic:hover {
+  border-color: #7a003c;
+  transform: translateY(-4px);
+}
+
+/* ------------------ Gothic Slideshow ------------------ */
+.slideshow {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  border: 2px solid #7a003c;
+  height: 500px;
+  box-shadow: 0 0 30px rgba(122, 0, 60, 0.6);
+}
+
+.slideshow img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 1s ease-in-out;
+  filter: brightness(0.8) contrast(1.1);
+}
+
+.slideshow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.9));
+}
+
+/* ------------------ Print Styles ------------------ */
+@media print {
+  body {
+    font-size: 12pt;
+    background: white;
+    color: black;
+  }
+}
