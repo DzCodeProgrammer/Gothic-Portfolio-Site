@@ -1,0 +1,101 @@
+'use client'
+import React, { useEffect, useRef } from 'react'
+import { useMedia } from './MediaContext'
+
+const songs = ['Songs1.mp3', 'Songs2.mp3']
+const bgVideos = ['Background1.mp4', 'Background2.mp4']
+
+export default function BackgroundMedia() {
+  const { selectedSong, selectedVideo, isPlaying } = useMedia()
+  const audioRefs = useRef<HTMLAudioElement[]>([])
+  const videoRefs = useRef<HTMLVideoElement[]>([])
+
+  useEffect(() => {
+    // Preload all videos and audios
+    bgVideos.forEach((video, index) => {
+      const videoEl = videoRefs.current[index]
+      if (videoEl) {
+        videoEl.load()
+      }
+    })
+    songs.forEach((song, index) => {
+      const audioEl = audioRefs.current[index]
+      if (audioEl) {
+        audioEl.load()
+      }
+    })
+  }, [])
+
+  useEffect(() => {
+    // Play selected video
+    videoRefs.current.forEach((video, index) => {
+      if (video) {
+        if (index === selectedVideo) {
+          video.play().catch(() => {})
+        } else {
+          video.pause()
+        }
+      }
+    })
+  }, [selectedVideo])
+
+  useEffect(() => {
+    // Play selected song
+    requestAnimationFrame(() => {
+      audioRefs.current.forEach((audio, index) => {
+        if (audio) {
+          if (index === selectedSong) {
+            if (isPlaying) {
+              audio.play().catch(() => {})
+            } else {
+              audio.pause()
+            }
+          } else {
+            audio.pause()
+          }
+        }
+      })
+    })
+  }, [selectedSong, isPlaying])
+
+  return (
+    <>
+      {/* Background Videos */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        {bgVideos.map((video, index) => (
+          <video
+            key={video}
+            ref={(el) => {
+              if (el) videoRefs.current[index] = el
+            }}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+              index === selectedVideo ? 'opacity-100' : 'opacity-0'
+            }`}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            style={{ filter: 'brightness(0.7) contrast(1.05)' }}
+          >
+            <source src={`/gothic_assets/${video}`} type="video/mp4" />
+          </video>
+        ))}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-transparent to-black/60" />
+      </div>
+
+      {/* Background Audios */}
+      {songs.map((song, index) => (
+        <audio
+          key={song}
+          ref={(el) => {
+            if (el) audioRefs.current[index] = el
+          }}
+          src={`/gothic_assets/${song}`}
+          loop
+          preload="auto"
+        />
+      ))}
+    </>
+  )
+}

@@ -103,7 +103,7 @@ export default function HomePage() {
 
       {/* Skills Preview */}
       <section className="text-center py-16">
-        <h2 className="text-4xl font-bold gothic-title text-slate-100 mb-8">
+        <h2 className="text-3xl md:text-4xl font-bold gothic-title text-slate-100 mb-8">
           {t('technologies') || 'Technologies I Work With'}
         </h2>
         <div className="flex flex-wrap justify-center gap-6">

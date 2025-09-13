@@ -3,7 +3,20 @@ import React, { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useLanguage } from '../LanguageContext'
 import { useTheme } from '../ThemeContext'
+import { useMedia } from '../MediaContext'
 import Clock from '../Clock'
+
+const VolumeUpIcon = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
+    <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+  </svg>
+)
+
+const VolumeOffIcon = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
+    <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM3 9v6h4l5 5V4L7 9H3zm13.5 3c0 .82-.29 1.57-.78 2.22l1.47 1.47c.91-.91 1.31-2.18 1.31-3.69s-.4-2.78-1.31-3.69l-1.47 1.47c.49.65.78 1.4.78 2.22zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77S18.01.32 14 3.23z"/>
+  </svg>
+)
 
 const NavLink: React.FC<{ href: string; children: React.ReactNode }> = ({ href, children }) => {
   return (
@@ -20,11 +33,15 @@ const NavLink: React.FC<{ href: string; children: React.ReactNode }> = ({ href, 
 export default function Navbar() {
   const { language: locale, setLanguage, t } = useLanguage()
   const { theme, toggleTheme } = useTheme()
+  const { selectedSong, setSelectedSong, selectedVideo, setSelectedVideo, isPlaying, togglePlay } = useMedia()
   const [open, setOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const mobileMenuRef = useRef<HTMLDivElement | null>(null)
   const dropdownRef = useRef<HTMLDivElement | null>(null)
+
+  const songs = ['Songs1.mp3', 'Songs2.mp3']
+  const bgVideos = ['Background1.mp4', 'Background2.mp4']
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 24)
@@ -56,6 +73,10 @@ export default function Navbar() {
     if (dropdownOpen) document.addEventListener('mousedown', onClick)
     return () => document.removeEventListener('mousedown', onClick)
   }, [dropdownOpen])
+
+  const toggleMusic = () => {
+    togglePlay()
+  }
 
   return (
     <header
@@ -136,6 +157,41 @@ export default function Navbar() {
         <div className="flex items-center gap-3">
           {/* Real-time Clock */}
           <Clock />
+
+          {/* Song selector */}
+          <select
+            value={selectedSong}
+            onChange={(e) => setSelectedSong(Number(e.target.value))}
+            className="rounded-md border bg-black text-white border-[#7a003c] px-2 py-1 text-sm gothic-select"
+          >
+            {songs.map((song, index) => (
+              <option key={song} value={index}>
+                {song}
+              </option>
+            ))}
+          </select>
+
+          {/* Background selector */}
+          <select
+            value={selectedVideo}
+            onChange={(e) => setSelectedVideo(Number(e.target.value))}
+            className="rounded-md border bg-black text-white border-[#7a003c] px-2 py-1 text-sm gothic-select"
+          >
+            {bgVideos.map((bg, index) => (
+              <option key={bg} value={index}>
+                {bg}
+              </option>
+            ))}
+          </select>
+
+          {/* Music toggle */}
+          <button
+            onClick={toggleMusic}
+            className="rounded-md p-2 transition-all duration-200 transform hover:scale-110 hover:text-[#7a003c] dark:hover:text-[#ff4da6] gothic-link"
+            aria-label={isPlaying ? 'Pause music' : 'Play music'}
+          >
+            {isPlaying ? <VolumeUpIcon /> : <VolumeOffIcon />}
+          </button>
 
           {/* Language switcher */}
           <div className="hidden md:block">
@@ -256,6 +312,8 @@ export default function Navbar() {
           </div>
         </div>
       )}
+
+
     </header>
   )
 }

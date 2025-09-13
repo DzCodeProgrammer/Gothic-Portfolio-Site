@@ -3,7 +3,9 @@ import React, { ReactNode } from 'react'
 import Navbar from '../components/Navbar/Navbar'
 import { LanguageProvider } from '../components/LanguageContext'
 import { ThemeProvider } from '../components/ThemeContext'
+import { MediaProvider } from '../components/MediaContext'
 import PageTransition from '../components/PageTransition'
+import BackgroundMedia from '../components/BackgroundMedia'
 
 import type { Viewport } from 'next'
 
@@ -30,26 +32,29 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       >
         <ThemeProvider>
           <LanguageProvider>
-            <Navbar />
-            <main
-              id="content"
-              className="mx-auto max-w-6xl px-4 py-8 gothic-main"
-              style={{ backgroundColor: 'transparent' }}
-            >
-              <PageTransition>
-                {children}
-              </PageTransition>
-            </main>
-            <footer
-              className="text-center py-8 text-sm gothic-footer"
-            >
-              <span className="block">
-                © {new Date().getFullYear()} • Gothic Portfolio Starter
-              </span>
-              <span className="block mt-1 text-xs text-slate-500 dark:text-slate-400">
-                Crafted with passion, elegance, and a touch of darkness
-              </span>
-            </footer>
+            <MediaProvider>
+              <BackgroundMedia />
+              <Navbar />
+              <main
+                id="content"
+                className="mx-auto max-w-6xl px-4 py-8 gothic-main relative z-10"
+                style={{ backgroundColor: 'transparent' }}
+              >
+                <PageTransition>
+                  {children}
+                </PageTransition>
+              </main>
+              <footer
+                className="text-center py-8 text-sm gothic-footer relative z-10"
+              >
+                <span className="block">
+                  © {new Date().getFullYear()} • Gothic Portfolio Starter
+                </span>
+                <span className="block mt-1 text-xs text-slate-500 dark:text-slate-400">
+                  Crafted with passion, elegance, and a touch of darkness
+                </span>
+              </footer>
+            </MediaProvider>
           </LanguageProvider>
         </ThemeProvider>
       </body>

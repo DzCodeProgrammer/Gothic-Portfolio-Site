@@ -68,6 +68,30 @@ export async function POST(req: Request) {
       const entries = fs.existsSync(contactsFile) ? JSON.parse(fs.readFileSync(contactsFile, 'utf-8')) : []
       entries.push({ ...body, ip, createdAt: new Date().toISOString() })
       fs.writeFileSync(contactsFile, JSON.stringify(entries, null, 2))
+
+      // Send message to WhatsApp and Instagram via webhook (e.g., Zapier or Make.com)
+      const webhookUrl = process.env.CONTACT_WEBHOOK_URL // Set this to your Zapier/Make webhook URL
+
+      const messageText = `New contact message from ${body.name} (${body.email}):\n${body.message}`
+
+      if (webhookUrl) {
+        fetch(webhookUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: body.name,
+            email: body.email,
+            message: body.message,
+            text: messageText,
+            waNumber: '+6281217618503',
+            igUrl: 'https://www.instagram.com/dzikripendragon/'
+          }),
+        }).catch((err: any) => console.error('Webhook error:', err))
+      } else {
+        console.log('No webhook URL set, message not sent to WA/IG')
+      }
     }
 
     return NextResponse.json({ ok: true })

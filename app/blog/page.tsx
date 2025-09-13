@@ -32,7 +32,7 @@ export default function BlogPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-16">
       <div className="text-center mb-16">
-        <h1 className="text-5xl font-bold text-slate-900 dark:text-slate-100 mb-4">Blog</h1>
+        <h1 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-100 mb-4">Blog</h1>
         <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
           Thoughts on web development, best practices, and insights from building modern applications.
         </p>

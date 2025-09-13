@@ -5,5 +5,19 @@
     "message": "adD",
     "ip": "::1",
     "createdAt": "2025-09-11T11:26:22.686Z"
+  },
+  {
+    "name": "Dz Learning",
+    "email": "dzikrijombang@gmail.com",
+    "message": "Anomali",
+    "ip": "::1",
+    "createdAt": "2025-09-13T06:36:59.782Z"
+  },
+  {
+    "name": "Learning ur Path",
+    "email": "24galen@siswa.smktiannajiyah.sch.id",
+    "message": "Halo",
+    "ip": "::1",
+    "createdAt": "2025-09-13T06:43:11.916Z"
   }
 ]
