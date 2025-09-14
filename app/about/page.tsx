@@ -30,15 +30,24 @@ export default function AboutPage() {
           <h2 className="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-6">Technologies</h2>
           <div className="grid grid-cols-2 gap-4">
             {[
-              'Next.js', 'TypeScript', 'React', 'Node.js',
-              'Tailwind CSS', 'PostgreSQL', 'Prisma', 'Git'
+              { name: 'Next.js', url: 'https://nextjs.org/' },
+              { name: 'TypeScript', url: 'https://www.typescriptlang.org/' },
+              { name: 'React', url: 'https://reactjs.org/' },
+              { name: 'Node.js', url: 'https://nodejs.org/' },
+              { name: 'Tailwind CSS', url: 'https://tailwindcss.com/' },
+              { name: 'PostgreSQL', url: 'https://www.postgresql.org/' },
+              { name: 'Prisma', url: 'https://www.prisma.io/' },
+              { name: 'Git', url: 'https://git-scm.com/' }
             ].map((tech) => (
-              <div
-                key={tech}
+              <Link
+                key={tech.name}
+                href={tech.url}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-4 py-3 bg-slate-50 dark:bg-slate-700 rounded-lg text-center font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors"
               >
-                {tech}
-              </div>
+                {tech.name}
+              </Link>
             ))}
           </div>
         </div>

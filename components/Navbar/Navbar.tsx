@@ -156,13 +156,15 @@ export default function Navbar() {
 
         <div className="flex items-center gap-3">
           {/* Real-time Clock */}
-          <Clock />
+          <div className="hidden md:block">
+            <Clock />
+          </div>
 
           {/* Song selector */}
           <select
             value={selectedSong}
             onChange={(e) => setSelectedSong(Number(e.target.value))}
-            className="rounded-md border bg-black text-white border-[#7a003c] px-2 py-1 text-sm gothic-select"
+            className="rounded-md border bg-black text-white border-[#7a003c] px-2 py-1 text-sm gothic-select hidden md:block"
           >
             {songs.map((song, index) => (
               <option key={song} value={index}>
@@ -175,7 +177,7 @@ export default function Navbar() {
           <select
             value={selectedVideo}
             onChange={(e) => setSelectedVideo(Number(e.target.value))}
-            className="rounded-md border bg-black text-white border-[#7a003c] px-2 py-1 text-sm gothic-select"
+            className="rounded-md border bg-black text-white border-[#7a003c] px-2 py-1 text-sm gothic-select hidden md:block"
           >
             {bgVideos.map((bg, index) => (
               <option key={bg} value={index}>

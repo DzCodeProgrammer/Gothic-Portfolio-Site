@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useMedia } from './MediaContext'
 
 const songs = ['Songs1.mp3', 'Songs2.mp3']
@@ -9,6 +9,14 @@ export default function BackgroundMedia() {
   const { selectedSong, selectedVideo, isPlaying } = useMedia()
   const audioRefs = useRef<HTMLAudioElement[]>([])
   const videoRefs = useRef<HTMLVideoElement[]>([])
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
 
 
@@ -46,32 +54,42 @@ export default function BackgroundMedia() {
 
   return (
     <>
-      {/* Background Videos */}
+      {/* Background Media */}
       <div className="fixed inset-0 z-0 pointer-events-none">
-        {bgVideos.map((video, index) => (
-          <video
-            key={video}
-            ref={(el) => {
-              if (el) videoRefs.current[index] = el
-            }}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
-              index === selectedVideo ? 'opacity-100' : 'opacity-0'
-            }`}
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
+        {isMobile ? (
+          <img
+            src="/images/Hasil.png"
+            alt="Background"
+            className="absolute inset-0 w-full h-full object-cover"
             style={{ filter: 'brightness(0.7) contrast(1.05)' }}
-          >
-            <source src={`/images/${video}`} type="video/mp4" />
-          </video>
-        ))}
+          />
+        ) : (
+          bgVideos.map((video, index) => (
+            <video
+              key={video}
+              ref={(el) => {
+                if (el) videoRefs.current[index] = el
+              }}
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+                index === selectedVideo ? 'opacity-100' : 'opacity-0'
+              }`}
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              poster="/images/Hasil.png"
+              style={{ filter: 'brightness(0.7) contrast(1.05)' }}
+            >
+              <source src={`/images/${video}`} type="video/mp4" />
+            </video>
+          ))
+        )}
         <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-transparent to-black/60" />
       </div>
 
       {/* Background Audios */}
-      {songs.map((song, index) => (
+      {!isMobile && songs.map((song, index) => (
         <audio
           key={song}
           ref={(el) => {

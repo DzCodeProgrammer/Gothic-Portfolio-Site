@@ -1,6 +1,11 @@
-# TODO
+# Add Technology Links in About Page
 
-- [x] Update components/Slideshow.tsx: change "/gothic_assets/" to "/images/" in images array
-- [x] Update components/BackgroundMedia.tsx: change "/gothic_assets/" to "/images/" in src attributes
-- [x] Update structure.md: change /gothic_assets/ to /images/
-- [x] Update README.md: change gothic_assets/ to images/
+## Steps to Complete
+
+- [x] Update app/about/page.tsx: Replace technology divs with Link components linking to official websites.
+
+## Dependent Files
+- app/about/page.tsx
+
+## Followup Steps
+- Test the links open in new tabs correctly.

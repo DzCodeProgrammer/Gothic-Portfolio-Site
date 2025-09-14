@@ -21,11 +21,11 @@ export default function Hero() {
           className="text-center px-6"
         >
           <h1
-            className="text-4xl md:text-6xl lg:text-7xl font-bold gothic-title bg-gradient-to-r from-red-400 to-purple-400 bg-clip-text text-transparent mb-4"
+            className="text-3xl md:text-6xl lg:text-7xl font-bold gothic-title bg-gradient-to-r from-red-400 to-purple-400 bg-clip-text text-transparent mb-4"
           >
             Hi, I'm DzCoder
           </h1>
-          <p className="text-xl md:text-2xl text-slate-300 mb-8 gothic-subtitle">
+          <p className="text-lg md:text-2xl text-slate-300 mb-8 gothic-subtitle">
             {t('Fullstack Engineer crafting modern web experiences with a dark gothic aesthetic') || 'heroSubtitle'}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

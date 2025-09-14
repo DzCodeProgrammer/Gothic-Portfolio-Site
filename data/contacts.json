@@ -19,5 +19,12 @@
     "message": "Halo",
     "ip": "::1",
     "createdAt": "2025-09-13T06:43:11.916Z"
+  },
+  {
+    "name": "Dz Learning",
+    "email": "24galen@siswa.smktiannajiyah.sch.id",
+    "message": "sss",
+    "ip": "::1",
+    "createdAt": "2025-09-14T09:19:09.270Z"
   }
 ]

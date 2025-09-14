@@ -29,6 +29,8 @@
     "twilio": "^5.9.0"
   },
   "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
     "autoprefixer": "^10.4.21",
     "eslint": "^8.48.0",
     "postcss": "^8.5.6",

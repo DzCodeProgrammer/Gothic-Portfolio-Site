@@ -37,7 +37,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               <Navbar />
               <main
                 id="content"
-                className="mx-auto max-w-6xl px-4 py-8 gothic-main relative z-10"
+              className="mx-auto max-w-full sm:max-w-3xl md:max-w-5xl lg:max-w-6xl px-2 sm:px-4 py-8 gothic-main relative z-10"
                 style={{ backgroundColor: 'transparent' }}
               >
                 <PageTransition>
