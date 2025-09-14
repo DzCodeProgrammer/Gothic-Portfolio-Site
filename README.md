@@ -1,54 +1,168 @@
-# Gothic Portfolio (Next.js + TypeScript + Tailwind)
+🕯️ Gothic Portfolio — Next.js + TypeScript + Tailwind
 
-A professional, accessible, and deployable Gothic-themed portfolio website using Next.js (App Router), TypeScript, Tailwind CSS, Prisma (Postgres) optional, MDX fallback, internationalization, and a full set of deliverables.
+A modern, gothic-inspired portfolio website built with Next.js (App Router), TypeScript, and Tailwind CSS.
+Optional Prisma + PostgreSQL integration and MDX fallback allow both database-driven and file-based workflows. Designed for accessibility, internationalization, and easy deployment on Vercel.
 
-## What's included
-- README.md (this file)
-- structure.md (project tree + explanations)
-- package.json, package-lock.json, tsconfig.json, next-env.d.ts
-- Next.js App Router files: `app/layout.tsx`, `app/page.tsx`, `app/about/page.tsx`, `app/blog/page.tsx`, `app/contact/page.tsx`, `app/projects/page.tsx`, `app/projects/featured/page.tsx`, `app/globals.css`
-- Components: `components/Navbar/Navbar.tsx`, `components/Clock.tsx`, `components/GothicContext.tsx`, `components/LanguageContext.tsx`, `components/PageTransition.tsx`, `components/Slideshow.tsx`, `components/ThemeContext.tsx`
-- API routes: `app/api/contact/route.ts` (contact POST), `app/api/projects/route.ts`, `app/api/projects/[id]/route.ts`
-- Prisma schema: `prisma/schema.prisma` and seed script `scripts/seed.ts`
-- File-based content in `data/` for projects and posts (MDX), including `data/contacts.json`
-- Localization: `locales/en.json`, `locales/id.json`, `i18n.ts`, `next-intl.config.js`
-- Static assets in `public/` including `resume.pdf` and `images/` images
-- Configuration files: `postcss.config.js`, `tailwind.config.js`, `TODO.md`
-- Other: `bash.exe.stackdump` (ignore), `next-intl.config.js`
+📦 Project Deliverables
 
-## Quick start (dev)
-1. Clone or download this repo.
-2. Install dependencies: `npm install`
-3. Copy `.env.example` to `.env.local` and set environment variables (see below).
-4. Run development server: `npm run dev`
-5. Seed data (if using Prisma + Postgres): `npm run prisma:seed`
+This repository includes:
 
-## Scripts
-- `npm run dev` -> starts Next.js dev server
-- `npm run build` -> builds for production
-- `npm run start` -> starts production server
-- `npm run lint` -> runs ESLint
-- `npm run test` -> runs tests (placeholder)
+Docs & Config
 
-See `package.json` for full list.
+README.md (this file)
 
-## Environment variables
-See `.env.example` for required variables (DATABASE_URL, SENDGRID_API_KEY, NEXT_PUBLIC_BASE_URL, NEXTAUTH_URL, etc.)
+structure.md (project tree + explanations)
 
-## Deployment
-Recommended: Vercel (link your GitHub repo). Set environment variables in Vercel dashboard and enable automatic deploys on push.
+package.json, package-lock.json, tsconfig.json, next-env.d.ts
 
-## Features
-- Gothic-themed design with dark mode support
-- Internationalization (English/Indonesian)
-- Responsive navbar with dropdowns
-- Real-time clock component
-- MDX-based content for projects and blog posts
-- Contact form with API
-- Prisma integration for database (optional)
-- File-based fallback for content
-- Accessible components
-- SEO-friendly with Next.js
+postcss.config.js, tailwind.config.js, TODO.md
 
-## Notes
-This project provides a DB-backed Prisma model and MDX file-based fallback. If you don't want a DB, use the MDX files in `/data` — `scripts/seed.ts` includes logic to write seed JSON for fallback.
+Next.js App Router
+
+app/layout.tsx, app/page.tsx
+
+app/about/page.tsx, app/blog/page.tsx
+
+app/contact/page.tsx, app/projects/page.tsx, app/projects/featured/page.tsx
+
+app/globals.css
+
+Components
+
+components/Navbar/Navbar.tsx
+
+components/Clock.tsx
+
+components/GothicContext.tsx
+
+components/LanguageContext.tsx
+
+components/PageTransition.tsx
+
+components/Slideshow.tsx
+
+components/ThemeContext.tsx
+
+API Routes
+
+app/api/contact/route.ts (Contact form POST)
+
+app/api/projects/route.ts
+
+app/api/projects/[id]/route.ts
+
+Database (Optional)
+
+prisma/schema.prisma
+
+scripts/seed.ts
+
+Content
+
+File-based projects & posts in /data/ (MDX)
+
+data/contacts.json
+
+Localization
+
+locales/en.json, locales/id.json
+
+i18n.ts, next-intl.config.js
+
+Static Assets
+
+/public/images/
+
+/public/resume.pdf
+
+🚀 Quick Start (Development)
+
+Clone this repo
+
+git clone https://github.com/<your-username>/<repo-name>.git
+cd <repo-name>
+
+
+Install dependencies
+
+npm install
+
+
+Setup environment
+
+Copy .env.example → .env.local
+
+Add required values (see below)
+
+Run the dev server
+
+npm run dev
+
+
+Seed database (optional)
+
+npm run prisma:seed
+
+⚡ Scripts
+
+npm run dev → Start Next.js dev server
+
+npm run build → Build production bundle
+
+npm run start → Run production server
+
+npm run lint → Run ESLint checks
+
+npm run test → Run tests (placeholder)
+
+🔑 Environment Variables
+
+Required values (see .env.example):
+
+DATABASE_URL → PostgreSQL connection (if using Prisma)
+
+SENDGRID_API_KEY → For email/contact form
+
+NEXT_PUBLIC_BASE_URL → Public site URL
+
+NEXTAUTH_URL → Authentication callback URL
+
+🌐 Deployment
+
+Recommended: Vercel
+
+Connect this repo → enable auto-deploy on push → set environment variables in Vercel dashboard.
+
+✨ Features
+
+🕯️ Gothic-inspired dark design
+
+🌍 Internationalization (English + Indonesian)
+
+📱 Responsive Navbar with dropdown menus
+
+⏱️ Real-time Clock widget
+
+📖 MDX-based content system (blog & projects)
+
+📬 Contact form with API route (POST → SendGrid)
+
+🗄️ Prisma + PostgreSQL integration (optional)
+
+📂 File-based fallback content
+
+♿ Accessible components & keyboard-friendly navigation
+
+🔍 SEO-ready with Next.js
+
+📝 Notes
+
+This project provides two approaches for content:
+
+Database-backed (Prisma + Postgres) → for dynamic data
+
+File-based (MDX + JSON fallback) → for static content
+
+The scripts/seed.ts script auto-generates seed data for the fallback JSON system if no DB is used.
+
+👉 Live Demo on Vercel
