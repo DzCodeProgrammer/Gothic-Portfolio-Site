@@ -10,21 +10,7 @@ export default function BackgroundMedia() {
   const audioRefs = useRef<HTMLAudioElement[]>([])
   const videoRefs = useRef<HTMLVideoElement[]>([])
 
-  useEffect(() => {
-    // Preload all videos and audios
-    bgVideos.forEach((video, index) => {
-      const videoEl = videoRefs.current[index]
-      if (videoEl) {
-        videoEl.load()
-      }
-    })
-    songs.forEach((song, index) => {
-      const audioEl = audioRefs.current[index]
-      if (audioEl) {
-        audioEl.load()
-      }
-    })
-  }, [])
+
 
   useEffect(() => {
     // Play selected video
