@@ -10,8 +10,8 @@ interface MediaContextType {
   setSelectedVideo: (video: number) => void
   isMediaSelectorOpen: boolean
   setIsMediaSelectorOpen: (open: boolean) => void
-  isPlaying: boolean
-  togglePlay: () => void
+  isMuted: boolean
+  toggleMute: () => void
 }
 
 const MediaContext = createContext<MediaContextType | undefined>(undefined)
@@ -32,17 +32,17 @@ export const MediaProvider: React.FC<MediaProviderProps> = ({ children }) => {
   const [selectedSong, setSelectedSong] = useState(0)
   const [selectedVideo, setSelectedVideo] = useState(0)
   const [isMediaSelectorOpen, setIsMediaSelectorOpen] = useState(false)
-  const [isPlaying, setIsPlaying] = useState(true)
+  const [isMuted, setIsMuted] = useState(true)
 
   // Load from localStorage on mount
   useEffect(() => {
     const savedSong = localStorage.getItem('selectedSong')
     const savedVideo = localStorage.getItem('selectedVideo')
-    const savedIsPlaying = localStorage.getItem('isPlaying')
+    const savedIsMuted = localStorage.getItem('isMuted')
 
     if (savedSong) setSelectedSong(Number(savedSong))
     if (savedVideo) setSelectedVideo(Number(savedVideo))
-    if (savedIsPlaying) setIsPlaying(savedIsPlaying === 'true')
+    if (savedIsMuted !== null) setIsMuted(savedIsMuted === 'true')
   }, [])
 
   // Save to localStorage when changed
@@ -55,11 +55,11 @@ export const MediaProvider: React.FC<MediaProviderProps> = ({ children }) => {
   }, [selectedVideo])
 
   useEffect(() => {
-    localStorage.setItem('isPlaying', isPlaying.toString())
-  }, [isPlaying])
+    localStorage.setItem('isMuted', isMuted.toString())
+  }, [isMuted])
 
-  const togglePlay = () => {
-    setIsPlaying((prev) => !prev)
+  const toggleMute = () => {
+    setIsMuted((prev) => !prev)
   }
 
   const value = {
@@ -69,8 +69,8 @@ export const MediaProvider: React.FC<MediaProviderProps> = ({ children }) => {
     setSelectedVideo,
     isMediaSelectorOpen,
     setIsMediaSelectorOpen,
-    isPlaying,
-    togglePlay,
+    isMuted,
+    toggleMute,
   }
 
   return <MediaContext.Provider value={value}>{children}</MediaContext.Provider>

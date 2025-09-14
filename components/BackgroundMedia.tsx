@@ -6,7 +6,7 @@ const songs = ['Songs1.mp3', 'Songs2.mp3']
 const bgVideos = ['background1.mp4', 'background2.mp4']
 
 export default function BackgroundMedia() {
-  const { selectedSong, selectedVideo, isPlaying } = useMedia()
+  const { selectedSong, selectedVideo, isMuted } = useMedia()
   const audioRefs = useRef<HTMLAudioElement[]>([])
   const videoRefs = useRef<HTMLVideoElement[]>([])
   const [isMobile, setIsMobile] = useState(false)
@@ -34,23 +34,20 @@ export default function BackgroundMedia() {
   }, [selectedVideo])
 
   useEffect(() => {
-    // Play selected song
+    // Handle selected song
     requestAnimationFrame(() => {
       audioRefs.current.forEach((audio, index) => {
         if (audio) {
+          audio.muted = isMuted
           if (index === selectedSong) {
-            if (isPlaying) {
-              audio.play().catch(() => {})
-            } else {
-              audio.pause()
-            }
+            audio.play().catch(() => {})
           } else {
             audio.pause()
           }
         }
       })
     })
-  }, [selectedSong, isPlaying])
+  }, [selectedSong, isMuted])
 
   return (
     <>
@@ -96,7 +93,9 @@ export default function BackgroundMedia() {
             if (el) audioRefs.current[index] = el
           }}
           src={`/images/${song}`}
+          autoPlay
           loop
+          muted={isMuted}
           preload="auto"
         />
       ))}

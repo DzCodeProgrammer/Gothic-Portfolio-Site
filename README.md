@@ -115,3 +115,31 @@ File-based (MDX + JSON fallback) → for static content
 The scripts/seed.ts script auto-generates seed data for the fallback JSON system if no DB is used.
 
 👉 Live Demo on Vercel : https://gothic-portfolio-site.vercel.app/
+
+## 🆕 Recent Enhancements
+
+### Autoplay Background Audio with Mute/Unmute Toggle
+- Implemented background audio autoplay that starts muted to comply with browser autoplay policies.
+- Added a mute/unmute toggle button in the navbar to allow users to control audio playback.
+- Audio playback state is persisted in localStorage to remember user preference.
+
+### Background Video Autoplay
+- Background videos autoplay muted with loop and playsInline attributes for smooth visual effects without audio conflicts.
+
+### Fullscreen PWA Capabilities
+- Added PWA manifest and meta tags to enable "Add to Home Screen" functionality on mobile devices.
+- Implemented a fullscreen toggle button in the navbar to allow users to hide browser UI and enjoy an immersive experience.
+
+## Testing
+- Verified audio autoplays muted on page load.
+- Confirmed mute/unmute toggle button functionality.
+- Tested fullscreen button on desktop and mobile.
+- Ensured PWA manifest enables mobile web app installation and fullscreen mode.
+
+## Next Steps
+- Monitor user feedback for any issues or improvements.
+- Consider adding more user controls for media playback if needed.
+
+---
+
+This update improves user experience by providing seamless background media playback and enhanced mobile usability.

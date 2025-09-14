@@ -18,6 +18,12 @@ const VolumeOffIcon = () => (
   </svg>
 )
 
+const FullscreenIcon = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
+    <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+  </svg>
+)
+
 const NavLink: React.FC<{ href: string; children: React.ReactNode }> = ({ href, children }) => {
   return (
     <Link
@@ -33,7 +39,7 @@ const NavLink: React.FC<{ href: string; children: React.ReactNode }> = ({ href, 
 export default function Navbar() {
   const { language: locale, setLanguage, t } = useLanguage()
   const { theme, toggleTheme } = useTheme()
-  const { selectedSong, setSelectedSong, selectedVideo, setSelectedVideo, isPlaying, togglePlay } = useMedia()
+  const { selectedSong, setSelectedSong, selectedVideo, setSelectedVideo, isMuted, toggleMute } = useMedia()
   const [open, setOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
@@ -75,7 +81,15 @@ export default function Navbar() {
   }, [dropdownOpen])
 
   const toggleMusic = () => {
-    togglePlay()
+    toggleMute()
+  }
+
+  const toggleFullscreen = () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen()
+    } else {
+      document.exitFullscreen()
+    }
   }
 
   return (
@@ -154,7 +168,7 @@ export default function Navbar() {
           </nav>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           {/* Real-time Clock */}
           <div className="hidden md:block">
             <Clock />
@@ -186,13 +200,22 @@ export default function Navbar() {
             ))}
           </select>
 
+          {/* Fullscreen toggle */}
+          <button
+            onClick={toggleFullscreen}
+            className="rounded-md p-2 transition-all duration-200 transform hover:scale-110 hover:text-[#7a003c] dark:hover:text-[#ff4da6] gothic-link"
+            aria-label="Toggle fullscreen"
+          >
+            <FullscreenIcon />
+          </button>
+
           {/* Music toggle */}
           <button
             onClick={toggleMusic}
             className="rounded-md p-2 transition-all duration-200 transform hover:scale-110 hover:text-[#7a003c] dark:hover:text-[#ff4da6] gothic-link"
-            aria-label={isPlaying ? 'Pause music' : 'Play music'}
+            aria-label={isMuted ? 'Unmute music' : 'Mute music'}
           >
-            {isPlaying ? <VolumeUpIcon /> : <VolumeOffIcon />}
+            {isMuted ? <VolumeOffIcon /> : <VolumeUpIcon />}
           </button>
 
           {/* Language switcher */}

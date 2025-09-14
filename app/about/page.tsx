@@ -37,7 +37,9 @@ export default function AboutPage() {
               { name: 'Tailwind CSS', url: 'https://tailwindcss.com/' },
               { name: 'PostgreSQL', url: 'https://www.postgresql.org/' },
               { name: 'Prisma', url: 'https://www.prisma.io/' },
-              { name: 'Git', url: 'https://git-scm.com/' }
+              { name: 'Git', url: 'https://git-scm.com/' },
+              { name: 'Github', url: 'https://github.com/' },
+              { name: 'Vercel', url: 'https://vercel.com/' }
             ].map((tech) => (
               <Link
                 key={tech.name}

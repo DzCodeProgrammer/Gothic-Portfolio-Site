@@ -12,7 +12,13 @@ import type { Viewport } from 'next'
 export const metadata = {
   title: 'Gothic Portfolio',
   description: 'A dark, elegant...',
-  // jangan letakkan themeColor di sini
+  manifest: '/manifest.json',
+  other: {
+    'mobile-web-app-capable': 'yes',
+    'apple-mobile-web-app-capable': 'yes',
+    'apple-mobile-web-app-status-bar-style': 'black-translucent',
+    'apple-mobile-web-app-title': 'Gothic Portfolio',
+  },
 }
 
 // tambahkan export viewport
