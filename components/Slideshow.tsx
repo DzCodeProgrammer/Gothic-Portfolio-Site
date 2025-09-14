@@ -3,9 +3,9 @@
 import React, { useEffect, useState } from "react";
 
 const images = [
-  "/gothic_assets/gothic1.jpeg",
-  "/gothic_assets/gothic2.jpeg",
-  "/gothic_assets/gothic3.webp"
+  "/images/gothic1.jpeg",
+  "/images/gothic2.jpeg",
+  "/images/gothic3.webp"
 ];
 
 export default function Slideshow() {

@@ -12,7 +12,7 @@ A professional, accessible, and deployable Gothic-themed portfolio website using
 - Prisma schema: `prisma/schema.prisma` and seed script `scripts/seed.ts`
 - File-based content in `data/` for projects and posts (MDX), including `data/contacts.json`
 - Localization: `locales/en.json`, `locales/id.json`, `i18n.ts`, `next-intl.config.js`
-- Static assets in `public/` including `resume.pdf` and `gothic_assets/` images
+- Static assets in `public/` including `resume.pdf` and `images/` images
 - Configuration files: `postcss.config.js`, `tailwind.config.js`, `TODO.md`
 - Other: `bash.exe.stackdump` (ignore), `next-intl.config.js`
 

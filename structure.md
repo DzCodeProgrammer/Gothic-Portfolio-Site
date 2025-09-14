@@ -57,7 +57,7 @@ A detailed and accurate tree of the repository and purpose of key folders/files:
   id.json - Indonesian locale strings
 
 /public/
-  /gothic_assets/
+  /images/
     gothic1.jpeg
     gothic2.jpeg
     gothic3.webp

@@ -78,7 +78,7 @@ export default function BackgroundMedia() {
             preload="auto"
             style={{ filter: 'brightness(0.7) contrast(1.05)' }}
           >
-            <source src={`/gothic_assets/${video}`} type="video/mp4" />
+            <source src={`/images/${video}`} type="video/mp4" />
           </video>
         ))}
         <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-transparent to-black/60" />
@@ -91,7 +91,7 @@ export default function BackgroundMedia() {
           ref={(el) => {
             if (el) audioRefs.current[index] = el
           }}
-          src={`/gothic_assets/${song}`}
+          src={`/images/${song}`}
           loop
           preload="auto"
         />
