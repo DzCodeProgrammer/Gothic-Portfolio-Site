@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react'
 import { useMedia } from './MediaContext'
 
 const songs = ['Songs1.mp3', 'Songs2.mp3']
-const bgVideos = ['Background1.mp4', 'Background2.mp4']
+const bgVideos = ['background1.mp4', 'background2.mp4']
 
 export default function BackgroundMedia() {
   const { selectedSong, selectedVideo, isPlaying } = useMedia()
