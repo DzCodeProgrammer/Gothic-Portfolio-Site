@@ -75,20 +75,29 @@ export async function POST(req: Request) {
       const messageText = `New contact message from ${body.name} (${body.email}):\n${body.message}`
 
       if (webhookUrl) {
-        fetch(webhookUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            name: body.name,
-            email: body.email,
-            message: body.message,
-            text: messageText,
-            waNumber: '+6281217618503',
-            igUrl: 'https://www.instagram.com/dzikripendragon/'
-          }),
-        }).catch((err: any) => console.error('Webhook error:', err))
+        try {
+          const res = await fetch(webhookUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              name: body.name,
+              email: body.email,
+              message: body.message,
+              text: messageText,
+              waNumber: '+6281217618503',
+              igUrl: 'https://www.instagram.com/dzikripendragon/'
+            }),
+          })
+          if (!res.ok) {
+            console.error('Webhook response error:', await res.text())
+            return NextResponse.json({ error: 'Webhook error' }, { status: 500 })
+          }
+        } catch (err) {
+          console.error('Webhook error:', err)
+          return NextResponse.json({ error: 'Webhook error' }, { status: 500 })
+        }
       } else {
         console.log('No webhook URL set, message not sent to WA/IG')
       }
