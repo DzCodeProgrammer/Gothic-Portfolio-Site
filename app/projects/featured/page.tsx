@@ -11,8 +11,8 @@ export default function FeaturedProjectsPage() {
         </p>
       </div>
 
-      <div className="space-y-12">
-        <div className="rounded-2xl border border-slate-200 dark:border-slate-700 p-8 bg-white dark:bg-slate-800 hover:shadow-xl transition-all duration-300">
+      <div className="w-full max-w-full space-y-12">
+        <div className="w-full max-w-full rounded-2xl border border-slate-200 dark:border-slate-700 p-8 bg-white dark:bg-slate-800 hover:shadow-xl transition-all duration-300">
           <div className="flex items-start gap-6">
             <div className="w-16 h-16 bg-indigo-100 dark:bg-indigo-900/30 rounded-xl flex items-center justify-center">
               <svg className="w-8 h-8 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -39,7 +39,7 @@ export default function FeaturedProjectsPage() {
           </div>
         </div>
 
-        <div className="rounded-2xl border border-slate-200 dark:border-slate-700 p-8 bg-white dark:bg-slate-800 hover:shadow-xl transition-all duration-300">
+        <div className="w-full max-w-full rounded-2xl border border-slate-200 dark:border-slate-700 p-8 bg-white dark:bg-slate-800 hover:shadow-xl transition-all duration-300">
           <div className="flex items-start gap-6">
             <div className="w-16 h-16 bg-cyan-100 dark:bg-cyan-900/30 rounded-xl flex items-center justify-center">
               <svg className="w-8 h-8 text-cyan-600 dark:text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">

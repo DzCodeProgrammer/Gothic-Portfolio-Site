@@ -21,28 +21,32 @@ export default function BackgroundMedia() {
 
 
   useEffect(() => {
-    // Play selected video
+    // Play selected video with improved switching logic
     videoRefs.current.forEach((video, index) => {
       if (video) {
         if (index === selectedVideo) {
-          video.play().catch(() => {})
+          video.currentTime = 0
+          video.play().catch(() => { })
         } else {
           video.pause()
+          video.currentTime = 0
         }
       }
     })
   }, [selectedVideo])
 
   useEffect(() => {
-    // Handle selected song
+    // Handle selected song with improved switching logic
     requestAnimationFrame(() => {
       audioRefs.current.forEach((audio, index) => {
         if (audio) {
           audio.muted = isMuted
           if (index === selectedSong) {
-            audio.play().catch(() => {})
+            audio.currentTime = 0
+            audio.play().catch(() => { })
           } else {
             audio.pause()
+            audio.currentTime = 0
           }
         }
       })
@@ -53,35 +57,26 @@ export default function BackgroundMedia() {
     <>
       {/* Background Media */}
       <div className="fixed inset-0 z-0 pointer-events-none">
-        {isMobile ? (
-          <img
-            src="/images/Hasil.png"
-            alt="Background"
-            className="absolute inset-0 w-full h-full object-cover"
-            style={{ filter: 'brightness(0.7) contrast(1.05)' }}
-          />
-        ) : (
-          bgVideos.map((video, index) => (
-            <video
-              key={video}
-              ref={(el) => {
-                if (el) videoRefs.current[index] = el
-              }}
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
-                index === selectedVideo ? 'opacity-100' : 'opacity-0'
+        {/* Remove background image for mobile, show video background or solid black */}
+        {bgVideos.map((video, index) => (
+          <video
+            key={video}
+            ref={(el) => {
+              if (el) videoRefs.current[index] = el
+            }}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${index === selectedVideo ? 'opacity-100' : 'opacity-0'
               }`}
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="auto"
-              poster="/images/Hasil.png"
-              style={{ filter: 'brightness(0.7) contrast(1.05)' }}
-            >
-              <source src={`/images/${video}`} type="video/mp4" />
-            </video>
-          ))
-        )}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            poster="/images/Hasil.png"
+            style={{ filter: 'brightness(0.7) contrast(1.05)' }}
+          >
+            <source src={`/images/${video}`} type="video/mp4" />
+          </video>
+        ))}
         <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-transparent to-black/60" />
       </div>
 

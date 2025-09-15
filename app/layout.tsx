@@ -34,7 +34,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       {/* Force body bg inline to prevent flash before CSS loads */}
       <body
         style={{ backgroundColor: '#000' }}
-        className="min-h-screen text-slate-100 antialiased gothic-body"
+        className="min-h-screen text-slate-100 antialiased gothic-body overflow-x-hidden"
       >
         <ThemeProvider>
           <LanguageProvider>
@@ -43,7 +43,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               <Navbar />
               <main
                 id="content"
-              className="mx-auto max-w-full sm:max-w-3xl md:max-w-5xl lg:max-w-6xl px-2 sm:px-4 py-8 gothic-main relative z-10"
+                className="mx-auto max-w-full sm:max-w-3xl md:max-w-5xl lg:max-w-6xl px-2 sm:px-4 py-8 gothic-main relative z-10"
                 style={{ backgroundColor: 'transparent' }}
               >
                 <PageTransition>

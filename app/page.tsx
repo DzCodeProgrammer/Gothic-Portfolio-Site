@@ -8,20 +8,20 @@ export default function HomePage() {
   const { t } = useLanguage()
 
   return (
-    <div className="space-y-16">
+    <div className="space-y-12 sm:space-y-16">
       {/* Hero Section (now from components/Hero) */}
       <Hero />
 
       {/* Featured Sections */}
-      <section className="grid gap-8 md:grid-cols-2">
-        <Link href="/projects" className="group">
-          <div className="gothic-card p-8 hover:shadow-red-700/40">
+      <section className="w-full max-w-full grid gap-6 sm:gap-8 md:grid-cols-2">
+        <Link href="/projects" className="group w-full">
+          <div className="gothic-card p-6 sm:p-8 hover:shadow-red-700/40 w-full">
             <div className="flex items-center mb-4">
               <div
-                className="p-3 bg-[#2a0a0a] rounded-xl mr-4 group-hover:bg-[#7a003c]/50 transition-colors"
+                className="p-2 sm:p-3 bg-[#2a0a0a] rounded-xl mr-3 sm:mr-4 group-hover:bg-[#7a003c]/50 transition-colors flex-shrink-0"
               >
                 <svg
-                  className="w-8 h-8 text-red-500 dark:text-red-400"
+                  className="w-6 sm:w-8 h-6 sm:h-8 text-red-500 dark:text-red-400"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -35,15 +35,15 @@ export default function HomePage() {
                 </svg>
               </div>
               <h2
-                className="text-2xl md:text-3xl font-bold gothic-title text-slate-100 group-hover:text-red-500 transition-colors"
+                className="text-xl sm:text-2xl md:text-3xl font-bold gothic-title text-slate-100 group-hover:text-red-500 transition-colors"
               >
                 {t('featuredProjects') || 'Featured Projects'}
               </h2>
             </div>
-            <p className="text-slate-400 leading-relaxed gothic-subtitle">
+            <p className="text-sm sm:text-base text-slate-400 leading-relaxed gothic-subtitle">
               Explore my latest work including web applications, APIs, and innovative gothic-inspired solutions.
             </p>
-            <div className="mt-6 flex items-center text-red-500 font-medium">
+            <div className="mt-4 sm:mt-6 flex items-center text-red-500 font-medium">
               {t('projects') || 'Projects'}
               <svg
                 className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform"
@@ -57,14 +57,14 @@ export default function HomePage() {
           </div>
         </Link>
 
-        <Link href="/blog" className="group">
-          <div className="gothic-card p-8 hover:shadow-purple-700/40">
+        <Link href="/blog" className="group w-full">
+          <div className="gothic-card p-6 sm:p-8 hover:shadow-purple-700/40 w-full">
             <div className="flex items-center mb-4">
               <div
-                className="p-3 bg-[#1a0a2a] rounded-xl mr-4 group-hover:bg-purple-900/50 transition-colors"
+                className="p-2 sm:p-3 bg-[#1a0a2a] rounded-xl mr-3 sm:mr-4 group-hover:bg-purple-900/50 transition-colors flex-shrink-0"
               >
                 <svg
-                  className="w-8 h-8 text-purple-500 dark:text-purple-400"
+                  className="w-6 sm:w-8 h-6 sm:h-8 text-purple-500 dark:text-purple-400"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -78,15 +78,15 @@ export default function HomePage() {
                 </svg>
               </div>
               <h2
-                className="text-2xl md:text-3xl font-bold gothic-title text-slate-100 group-hover:text-purple-500 transition-colors"
+                className="text-xl sm:text-2xl md:text-3xl font-bold gothic-title text-slate-100 group-hover:text-purple-500 transition-colors"
               >
                 {t('latestPosts') || 'Latest Posts'}
               </h2>
             </div>
-            <p className="text-slate-400 leading-relaxed gothic-subtitle">
+            <p className="text-sm sm:text-base text-slate-400 leading-relaxed gothic-subtitle">
               Read my thoughts on web development, best practices, and insights — all wrapped in a gothic tone.
             </p>
-            <div className="mt-6 flex items-center text-purple-500 font-medium">
+            <div className="mt-4 sm:mt-6 flex items-center text-purple-500 font-medium">
               {t('blog') || 'Blog'}
               <svg
                 className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform"
@@ -102,11 +102,11 @@ export default function HomePage() {
       </section>
 
       {/* Skills Preview */}
-      <section className="text-center py-16">
-        <h2 className="text-2xl md:text-4xl font-bold gothic-title text-slate-100 mb-8">
+      <section className="text-center py-12 sm:py-16">
+        <h2 className="text-xl sm:text-2xl md:text-4xl font-bold gothic-title text-slate-100 mb-6 sm:mb-8">
           {t('technologies') || 'Technologies I Work With'}
         </h2>
-        <div className="flex flex-wrap justify-center gap-6">
+        <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
           {[
             { name: 'Next.js', color: 'hover:text-white' },
             { name: 'TypeScript', color: 'hover:text-blue-400' },
@@ -117,7 +117,7 @@ export default function HomePage() {
           ].map((tech) => (
             <div
               key={tech.name}
-              className={`px-6 py-3 gothic-card rounded-full font-medium text-slate-300 transition-all duration-300 transform hover:scale-110 hover:shadow-lg ${tech.color}`}
+              className={`w-full sm:w-auto px-4 sm:px-6 py-2 sm:py-3 gothic-card rounded-full font-medium text-sm sm:text-base text-slate-300 transition-all duration-300 transform hover:scale-110 hover:shadow-lg ${tech.color}`}
             >
               {tech.name}
             </div>

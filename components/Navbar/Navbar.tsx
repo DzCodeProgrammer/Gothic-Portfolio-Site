@@ -8,19 +8,19 @@ import Clock from '../Clock'
 
 const VolumeUpIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
-    <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+    <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" />
   </svg>
 )
 
 const VolumeOffIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
-    <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM3 9v6h4l5 5V4L7 9H3zm13.5 3c0 .82-.29 1.57-.78 2.22l1.47 1.47c.91-.91 1.31-2.18 1.31-3.69s-.4-2.78-1.31-3.69l-1.47 1.47c.49.65.78 1.4.78 2.22zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77S18.01.32 14 3.23z"/>
+    <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM3 9v6h4l5 5V4L7 9H3zm13.5 3c0 .82-.29 1.57-.78 2.22l1.47 1.47c.91-.91 1.31-2.18 1.31-3.69s-.4-2.78-1.31-3.69l-1.47 1.47c.49.65.78 1.4.78 2.22zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77S18.01.32 14 3.23z" />
   </svg>
 )
 
 const FullscreenIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
-    <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+    <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z" />
   </svg>
 )
 
@@ -94,17 +94,15 @@ export default function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-40 transition-all duration-300 gothic-header ${
-        isScrolled ? 'bg-white dark:bg-[#0a0a0a]' : 'bg-transparent'
-      }`}
+      className={`sticky top-0 z-40 transition-all duration-300 gothic-header ${isScrolled ? 'bg-white dark:bg-[#0a0a0a]' : 'bg-transparent'
+        }`}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <div className="flex items-center gap-4">
           <Link href="/" className="flex items-center gap-2">
             <span
-              className={`font-gothic text-2xl tracking-widest transition-all duration-300 ${
-                isScrolled ? 'text-[#7a003c]' : 'text-white dark:text-gray-200'
-              }`}
+              className={`font-gothic text-2xl tracking-widest transition-all duration-300 ${isScrolled ? 'text-[#7a003c]' : 'text-white dark:text-gray-200'
+                }`}
             >
               Gothic<span className="text-[#7a003c]">Portfolio</span>
             </span>
@@ -331,6 +329,46 @@ export default function Navbar() {
                 >
                   <option value="en">EN</option>
                   <option value="id">ID</option>
+                </select>
+              </div>
+
+              {/* Mobile song selector */}
+              <div className="px-3 py-2">
+                <label htmlFor="mobile-song" className="block text-sm font-medium mb-1">
+                  {t('selectSong')}
+                </label>
+                <select
+                  id="mobile-song"
+                  name="mobile-song"
+                  className="w-full rounded-md border bg-black text-white border-[#7a003c] px-2 py-1 text-sm gothic-select"
+                  value={selectedSong}
+                  onChange={(e) => setSelectedSong(Number(e.target.value))}
+                >
+                  {songs.map((song, index) => (
+                    <option key={song} value={index}>
+                      {song}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Mobile background selector */}
+              <div className="px-3 py-2">
+                <label htmlFor="mobile-bg" className="block text-sm font-medium mb-1">
+                  {t('selectBackground')}
+                </label>
+                <select
+                  id="mobile-bg"
+                  name="mobile-bg"
+                  className="w-full rounded-md border bg-black text-white border-[#7a003c] px-2 py-1 text-sm gothic-select"
+                  value={selectedVideo}
+                  onChange={(e) => setSelectedVideo(Number(e.target.value))}
+                >
+                  {bgVideos.map((bg, index) => (
+                    <option key={bg} value={index}>
+                      {bg}
+                    </option>
+                  ))}
                 </select>
               </div>
             </nav>
