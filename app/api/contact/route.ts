@@ -76,6 +76,7 @@ export async function POST(req: Request) {
 
       if (webhookUrl) {
         try {
+          console.log('Sending payload to webhook:', { name: body.name, email: body.email, message: body.message })
           const res = await fetch(webhookUrl, {
             method: 'POST',
             headers: {
@@ -84,10 +85,7 @@ export async function POST(req: Request) {
             body: JSON.stringify({
               name: body.name,
               email: body.email,
-              message: body.message,
-              text: messageText,
-              waNumber: '+6281217618503',
-              igUrl: 'https://www.instagram.com/dzikripendragon/'
+              message: body.message
             }),
           })
           if (!res.ok) {
