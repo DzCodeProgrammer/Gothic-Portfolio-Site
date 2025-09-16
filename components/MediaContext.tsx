@@ -32,7 +32,7 @@ export const MediaProvider: React.FC<MediaProviderProps> = ({ children }) => {
   const [selectedSong, setSelectedSong] = useState(0)
   const [selectedVideo, setSelectedVideo] = useState(0)
   const [isMediaSelectorOpen, setIsMediaSelectorOpen] = useState(false)
-  const [isMuted, setIsMuted] = useState(true)
+  const [isMuted, setIsMuted] = useState(false)
 
   // Load from localStorage on mount
   useEffect(() => {

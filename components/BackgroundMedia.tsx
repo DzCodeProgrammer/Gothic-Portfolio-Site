@@ -37,20 +37,31 @@ export default function BackgroundMedia() {
 
   useEffect(() => {
     // Handle selected song with improved switching logic
-    requestAnimationFrame(() => {
-      audioRefs.current.forEach((audio, index) => {
-        if (audio) {
-          audio.muted = isMuted
-          if (index === selectedSong) {
-            audio.currentTime = 0
-            audio.play().catch(() => { })
-          } else {
-            audio.pause()
-            audio.currentTime = 0
-          }
+    let isMounted = true
+    const playAudio = async (audio: HTMLAudioElement) => {
+      try {
+        if (audio.paused) {
+          audio.currentTime = 0
+          await audio.play()
         }
-      })
+      } catch (error) {
+        // Handle play error silently
+      }
+    }
+    audioRefs.current.forEach((audio, index) => {
+      if (audio && isMounted) {
+        audio.muted = isMuted
+        if (index === selectedSong) {
+          playAudio(audio)
+        } else {
+          audio.pause()
+          audio.currentTime = 0
+        }
+      }
     })
+    return () => {
+      isMounted = false
+    }
   }, [selectedSong, isMuted])
 
   return (
@@ -70,8 +81,8 @@ export default function BackgroundMedia() {
             loop
             muted
             playsInline
-            preload="auto"
-            poster="/images/Hasil.png"
+            preload="metadata"
+
             style={{ filter: 'brightness(0.7) contrast(1.05)' }}
           >
             <source src={`/images/${video}`} type="video/mp4" />
@@ -91,7 +102,7 @@ export default function BackgroundMedia() {
           autoPlay
           loop
           muted={isMuted}
-          preload="auto"
+          preload="metadata"
         />
       ))}
     </>

@@ -15,7 +15,7 @@ export default function HomePage() {
       {/* Featured Sections */}
       <section className="w-full max-w-full grid gap-6 sm:gap-8 md:grid-cols-2">
         <Link href="/projects" className="group w-full">
-          <div className="gothic-card p-6 sm:p-8 hover:shadow-red-700/40 w-full">
+          <div className="gothic-card p-6 sm:p-8 hover:shadow-red-700/40 w-full bg-transparent">
             <div className="flex items-center mb-4">
               <div
                 className="p-2 sm:p-3 bg-[#2a0a0a] rounded-xl mr-3 sm:mr-4 group-hover:bg-[#7a003c]/50 transition-colors flex-shrink-0"
@@ -58,7 +58,7 @@ export default function HomePage() {
         </Link>
 
         <Link href="/blog" className="group w-full">
-          <div className="gothic-card p-6 sm:p-8 hover:shadow-purple-700/40 w-full">
+          <div className="gothic-card p-6 sm:p-8 hover:shadow-purple-700/40 w-full bg-transparent">
             <div className="flex items-center mb-4">
               <div
                 className="p-2 sm:p-3 bg-[#1a0a2a] rounded-xl mr-3 sm:mr-4 group-hover:bg-purple-900/50 transition-colors flex-shrink-0"
